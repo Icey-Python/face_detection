@@ -28,9 +28,14 @@ def detect_face(image:str):
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
     plt.figure(figsize=(20,10))
-    plt.imsave("./images/detections/detection_test.jpg",img_rgb)
-    subprocess.call(["xdg-open","./images/detections/detection_test.jpg"])
+    # plt.imsave("./images/detections/detection_test.jpg",img_rgb)
+    # subprocess.call(["xdg-open","./images/detections/detection_test.jpg"])
     plt.axis('off')
     
+    while True:
+        cv2.imshow("face detector", img_rgb)
+        if cv2.waitKey(1) & 0xFF == ord("q"):
+            cv2.destroyAllWindows()
+            break
 image_path = "./images/potriat_test.jpg"
 detect_face(image_path)
